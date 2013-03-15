@@ -1,6 +1,7 @@
 import sbt._
 import Keys._
 import play.Project._
+import cloudbees.Plugin._
 
 object ApplicationBuild extends Build {
 
@@ -14,8 +15,10 @@ object ApplicationBuild extends Build {
   )
 
 
-  val main = play.Project(appName, appVersion, appDependencies).settings(
+  val main = play.Project(appName, appVersion, appDependencies)
+  .settings(cloudBeesSettings:_*)
+  .settings(
+    CloudBees.applicationId := Some("PlayWithCloudBees")
     // Add your own project settings here      
   )
-
 }
